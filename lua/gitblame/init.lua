@@ -97,8 +97,8 @@ local function load_blames(callback)
     local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
     if #lines == 0 then return end
 
-    local filepath = vim.api.nvim_buf_get_name(0)
-    if filepath == "" then return end
+    local filepath = utils.get_filepath()
+    if not filepath then return end
 
     local filetype = vim.api.nvim_buf_get_option(0, 'ft')
     if vim.tbl_contains(vim.g.gitblame_ignored_filetypes, filetype) then
